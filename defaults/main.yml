@@ -1,6 +1,5 @@
 ---
 # defaults file for redis
----
 ## Installation options
 redis_package: redis-2.8.3.tar.gz
 redis_version: 2.8.3
