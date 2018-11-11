@@ -1,6 +1,8 @@
+---
 # From https://github.com/antirez/redis-hashes
 # Generate with:
-# $ curl -s https://raw.githubusercontent.com/antirez/redis-hashes/master/README | gawk '/^hash/ { print gensub(/redis-(.*)\.tar\.gz/, "\\1", "g", $2) ": " $4 }'
+# $ curl -s https://raw.githubusercontent.com/antirez/redis-hashes/master/README \
+# | gawk '/^hash/ { print gensub(/redis-(.*)\.tar\.gz/, "\\1", "g", $2) ": " $4 }'
 redis_checksums:
   2.8.0-rc5: bd27589b71a0b406b982485051f32b7c40c9d2c1
   2.8.0-rc6: d13db76145a9844e2a3302f561e907056f9e21a0
