@@ -51,10 +51,8 @@
     - redis_as_service
     - ansible_service_mgr|default() == "systemd"
     - redis_unit_file|changed
-
-- name: set redis to start at boot
   notify:
-    - "Start and enable redis"
+    - Start and enable redis
 
 # Check then create log dir to prevent aggressively overwriting permissions
 - name: check if log directory exists
