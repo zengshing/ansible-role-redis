@@ -1,0 +1,15 @@
+---
+# tasks file for demo
+
+- include: dependencies.yml
+  tags:
+    - install
+
+- include: install.yml
+  tags:
+    - install
+
+- include: server.yml
+  when: not redis_sentinel
+  tags:
+    - config

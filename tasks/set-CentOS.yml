@@ -1,0 +1,22 @@
+---
+
+- name: Install redis depedent.
+  yum: name=tcl state=present
+
+- name: Copy redis file.
+  copy:
+    src: "{{ redis_package }}"
+    dest: "{{ software_dir }}"
+    remote_src: false
+
+- name: Unarchive redis.
+  unarchive:
+    src: "{{ software_dir }}{{ redis_package }}"
+    dest: /usr/local/src/
+
+- name: Install redis.
+  shell: |
+          cd /usr/local/src/redis-2.8.3;
+          cd src;
+          make install;
+          make test
