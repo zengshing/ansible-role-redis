@@ -46,17 +46,15 @@
     - (redis_pidfile|dirname).startswith('/var/run') or (redis_pidfile|dirname).startswith('/run')
 
 - name: reload systemd daemon
-  command: systemctl daemon-reload
+  systemd: daemon_reload=yes
   when:
     - redis_as_service
     - ansible_service_mgr|default() == "systemd"
     - redis_unit_file|changed
 
 - name: set redis to start at boot
-  service:
-    name: "{{ redis_service_name }}"
-    enabled: yes
-  when: redis_as_service
+  notify: 
+    - "Start and enable redis"
 
 # Check then create log dir to prevent aggressively overwriting permissions
 - name: check if log directory exists
@@ -107,7 +105,8 @@
     dest: /etc/redis/{{ redis_port }}.conf
     owner: "{{ redis_user }}"
     mode: 0640
-  notify: "restart redis {{ redis_port }}"
+  notify: 
+    - "restart redis {{ redis_port }}"
 
 - name: add redis init config file
   template:
