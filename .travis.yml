@@ -6,7 +6,7 @@ services:
 
 env:
   global:
-    - ROLE_NAME: common
+    - ROLE_NAME: redis
   matrix:
     - MOLECULE_DISTRO: centos7
 
