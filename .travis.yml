@@ -22,7 +22,7 @@ before_script:
 script:
   - molecule --version
   - ansible --version
-  - molecule test
+  - molecule --deubg test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
