@@ -53,7 +53,7 @@
     - redis_unit_file|changed
 
 - name: set redis to start at boot
-  notify: 
+  notify:
     - "Start and enable redis"
 
 # Check then create log dir to prevent aggressively overwriting permissions
@@ -105,7 +105,7 @@
     dest: /etc/redis/{{ redis_port }}.conf
     owner: "{{ redis_user }}"
     mode: 0640
-  notify: 
+  notify:
     - "restart redis {{ redis_port }}"
 
 - name: add redis init config file
