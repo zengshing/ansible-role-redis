@@ -91,6 +91,12 @@
     - redis_pidfile != '""'
     - not piddir.stat.exists
 
+- name: catch redis service status.
+  shell: systemctl status -l redis_6379.service
+  register: result
+
+- debug: msg="{{ result.stdout }}"
+
 - name: create redis config file
   template:
     src: redis.conf.j2
