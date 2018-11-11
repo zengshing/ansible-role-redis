@@ -17,8 +17,8 @@
     - files:
         - "{{ ansible_os_family }}/redis.init.j2"
         - default/redis.init.j2
-        paths:
-          - ../templates
+      paths:
+        - ../templates
   when: redis_as_service and ansible_service_mgr|default() != "systemd"
 
 - name: create redis systemd service
@@ -28,8 +28,8 @@
     mode: 0644
   with_first_found:
     - files:
-      - "{{ ansible_os_family }}/redis.service.j2"
-      - default/redis.service.j2
+        - "{{ ansible_os_family }}/redis.service.j2"
+        - default/redis.service.j2
       paths:
         - ../templates
   register: redis_unit_file
