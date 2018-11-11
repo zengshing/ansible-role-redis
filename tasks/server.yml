@@ -102,7 +102,7 @@
 
 - name: add redis init config file
   template:
-    dest: /etc/sysconfig/{{ redis_service_name }}
+    dest: {{redis_init_config_path}}{{ redis_service_name }}
     src: redis.init.conf.j2
     mode: 0600
   when: ansible_os_family == "RedHat"
@@ -110,7 +110,7 @@
 
 - name: add redis init config file
   template:
-    dest: /etc/default/{{ redis_service_name }}
+    dest: {{redis_init_config_path}}{{ redis_service_name }}
     src: redis.init.conf.j2
     mode: 0600
   when: ansible_os_family == "Debian"
