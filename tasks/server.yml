@@ -112,5 +112,5 @@
 - name: ensure redis is running
   service:
     name: "{{ redis_service_name }}"
-    state: restarted
+    state: started
   when: redis_as_service
