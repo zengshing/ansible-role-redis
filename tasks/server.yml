@@ -91,27 +91,18 @@
     - redis_pidfile != '""'
     - not piddir.stat.exists
 
-- name: catch redis service status.
-  shell: systemctl status -l redis_6379.service
-  register: result
-
-- debug: msg="{{ result.stdout }}"
-
 - name: create redis config file
   template:
     src: redis.conf.j2
     dest: /etc/redis/{{ redis_port }}.conf
     owner: "{{ redis_user }}"
     mode: 0640
-  notify:
-    - "restart redis {{ redis_port }}"
 
 - name: add redis init config file
   template:
     dest: "{{ redis_init_config_path }}{{ redis_service_name }}"
     src: redis.init.conf.j2
     mode: 0600
-  notify: "restart redis {{ redis_port }}"
 
 # Flush handlers before ensuring the service is started to prevent
 # a start and then restart
@@ -121,5 +112,5 @@
 - name: ensure redis is running
   service:
     name: "{{ redis_service_name }}"
-    state: started
+    state: restarted
   when: redis_as_service
