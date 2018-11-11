@@ -1,15 +1,16 @@
 ---
 # tasks file for demo
+- include_tasks: variables.yml
 
-- include: dependencies.yml
+- include_tasks: dependencies.yml
   tags:
     - install
 
-- include: install.yml
+- include_tasks: install.yml
   tags:
     - install
 
-- include: server.yml
+- include_tasks: server.yml
   when: not redis_sentinel
   tags:
     - config
