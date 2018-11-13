@@ -8,17 +8,11 @@
     ignoreerrors: yes
   when: redis_travis_ci is not defined
 
-- name: Copy redis file.
-  copy:
+- name: Unarchive redis file.
+  unarchive:
     src: "{{ redis_package }}"
     dest: /usr/local/src/
     remote_src: false
-
-- name: Unarchive redis file.
-  unarchive:
-    src: "/usr/local/src/{{ redis_package }}"
-    dest: /usr/local/src/
-    remote_src: true
 
 - name: compile redis
   command: make -j{{ ansible_processor_cores|default(1) + 1 }}{{ ' 32bit' if redis_make_32bit|bool else '' }}
