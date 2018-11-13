@@ -12,7 +12,7 @@ unixsocketperm {{ redis_socket_perm }}
 {% endif -%}
 timeout {{ redis_timeout }}
 tcp-keepalive {{ redis_tcp_keepalive }}
-tcp-backlog {{ redis_tcp_backlog }}
+# tcp-backlog {{ redis_tcp_backlog }}
 loglevel {{ redis_loglevel }}
 logfile {{ redis_logfile }}
 syslog-enabled {{ redis_syslog_enabled }}
