@@ -16,7 +16,7 @@
 
 - name: Unarchive redis file.
   unarchive:
-    src: /usr/local/src/"{{ redis_package }}"
+    src: "/usr/local/src/{{ redis_package }}"
     dest: /usr/local/src/
     remote_src: true
 
